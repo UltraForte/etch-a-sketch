@@ -1,0 +1,15 @@
+.square {
+    box-sizing: border-box;
+    border: 1px, solid, black;
+    width: 6.25%;
+    aspect-ratio: 1;
+    display: inline-flex;
+    margin: 0px;
+    padding: 0px;
+    margin-bottom: -5px;
+};
+
+div.container {
+    display: flex;
+    width: 960px;
+};
