@@ -2,6 +2,8 @@ function setGrid() {
     for (i = 0; i < 16; i++) {
     const square = document.createElement("div");
     square.setAttribute("class", "square");
+    //
+    square.style.opacity = 0;
 
     const mainContainer = document.querySelector(".container");
     mainContainer.appendChild(square);
@@ -49,6 +51,10 @@ function randomRGB() {
 function hoverEffect(allSquares) {
     allSquares.addEventListener("mouseover", () => {
         allSquares.style.backgroundColor = randomRGB();
+        let currentOpacity = parseFloat(allSquares.style.opacity);
+        if (currentOpacity <= 1) {
+            allSquares.style.opacity = currentOpacity + 0.1;
+        };
     });
 };
 allSquares.forEach(hoverEffect);
