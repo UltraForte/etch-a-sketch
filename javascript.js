@@ -37,9 +37,18 @@ let allSquares = mainContainer.querySelectorAll(".square");
 function removeSquares(allSquares) {
     allSquares.remove();
 };
+function randomRGB() {
+    function randomNum() {
+        let number = Math.round(Math.random() * 256);
+        return number;
+    };
+    let randomColor = "rgb(" + randomNum() + "," + randomNum() + "," + randomNum() + ")";
+    return randomColor;
+};
+
 function hoverEffect(allSquares) {
     allSquares.addEventListener("mouseover", () => {
-    allSquares.style.backgroundColor = "black";
+        allSquares.style.backgroundColor = randomRGB();
     });
 };
 allSquares.forEach(hoverEffect);
