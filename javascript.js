@@ -50,10 +50,16 @@ function randomRGB() {
 
 function hoverEffect(allSquares) {
     allSquares.addEventListener("mouseover", () => {
+        if (isBlackOnlyActive) {
+            allSquares.style.backgroundColor = "black";
+            allSquares.style.opacity = 1;
+
+        } else {
         allSquares.style.backgroundColor = randomRGB();
         let currentOpacity = parseFloat(allSquares.style.opacity);
         if (currentOpacity <= 1) {
             allSquares.style.opacity = currentOpacity + 0.1;
+        };
         };
     });
 };
@@ -85,4 +91,22 @@ changeSizeBtn.addEventListener("click", () => {
     };
     allSquares = mainContainer.querySelectorAll(".square");
     allSquares.forEach(hoverEffect);
+});
+
+
+//Extra Features Practice//
+const blackOnlyBtn = document.getElementById("black-only");
+const fullOpacityBtn = document.getElementById("full-opacity");
+
+let isBlackOnlyActive = true;
+blackOnlyBtn.addEventListener("click", function() {
+    if (isBlackOnlyActive) {
+        blackOnlyBtn.style.backgroundColor = "green";
+        blackOnlyBtn.textContent = "On";
+
+    } else {
+        blackOnlyBtn.style.backgroundColor = "red";
+        blackOnlyBtn.textContent = "Off";
+    };
+    isBlackOnlyActive = !isBlackOnlyActive;
 });
