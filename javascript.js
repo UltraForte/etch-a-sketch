@@ -50,16 +50,24 @@ function randomRGB() {
 
 function hoverEffect(allSquares) {
     allSquares.addEventListener("mouseover", () => {
-        if (isBlackOnlyActive) {
+        if (isBlackOnlyActive && isFullOpacityActive) {
             allSquares.style.backgroundColor = "black";
             allSquares.style.opacity = 1;
-
-        } else {
-        allSquares.style.backgroundColor = randomRGB();
-        let currentOpacity = parseFloat(allSquares.style.opacity);
-        if (currentOpacity <= 1) {
-            allSquares.style.opacity = currentOpacity + 0.1;
-        };
+        } else if (isBlackOnlyActive && !isFullOpacityActive) {
+            allSquares.style.backgroundColor = "black";
+            let currentOpacity = parseFloat(allSquares.style.opacity);
+                if (currentOpacity <= 1) {
+                    allSquares.style.opacity = currentOpacity + 0.1;
+                };
+        } else if (!isBlackOnlyActive && isFullOpacityActive) {
+            allSquares.style.backgroundColor = randomRGB();
+            allSquares.style.opacity = 1;
+        } else if (!isBlackOnlyActive && !isFullOpacityActive) {
+            allSquares.style.backgroundColor = randomRGB();
+            let currentOpacity = parseFloat(allSquares.style.opacity);
+                if (currentOpacity <= 1) {
+                    allSquares.style.opacity = currentOpacity + 0.1;
+                };
         };
     });
 };
@@ -82,6 +90,8 @@ changeSizeBtn.addEventListener("click", () => {
         squareSize = findSquareSize() + "px";
         square.style.width = squareSize;
 
+        square.style.opacity = 0;
+
         const mainContainer = document.querySelector(".container");
         mainContainer.appendChild(square);
         };
@@ -100,13 +110,24 @@ const fullOpacityBtn = document.getElementById("full-opacity");
 
 let isBlackOnlyActive = true;
 blackOnlyBtn.addEventListener("click", function() {
+    isBlackOnlyActive = !isBlackOnlyActive;
     if (isBlackOnlyActive) {
         blackOnlyBtn.style.backgroundColor = "green";
         blackOnlyBtn.textContent = "On";
-
     } else {
         blackOnlyBtn.style.backgroundColor = "red";
         blackOnlyBtn.textContent = "Off";
     };
-    isBlackOnlyActive = !isBlackOnlyActive;
+});
+
+let isFullOpacityActive = true;
+fullOpacityBtn.addEventListener("click", () => {
+    isFullOpacityActive = !isFullOpacityActive;
+    if (isFullOpacityActive) {
+        fullOpacityBtn.style.backgroundColor = "green";
+        fullOpacityBtn.textContent = "On";
+    } else {
+        fullOpacityBtn.style.backgroundColor = "red";
+        fullOpacityBtn.textContent = "Off";
+    };
 });

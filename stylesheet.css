@@ -14,9 +14,8 @@ div.container {
 }
 
 button#black-only {
-    background-color: red;
-    
+    background-color: green;
 }
 button#full-opacity {
-    background-color: red;
+    background-color: green;
 }
